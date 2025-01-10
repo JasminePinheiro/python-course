@@ -1,0 +1,10 @@
+# Duas barras em uma divisão o resultado é o inteiro, se nenhum dos números forem float
+# Uma barra em uma divisão o resultado é float
+
+# Exemplo de Indexação 
+# Função de fatiamento ou slice 
+# m[1:] - Pega tudo a partir do indice 1
+# m[:3] - Pega tudo até o indice 3
+# m[-1] - Pega de trás pra frente nesse cada a ultima letra
+# m[:-1] - Pega tudo exceto a última letra
+# m[::-1] - Inverte das as strings

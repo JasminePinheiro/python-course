@@ -1,0 +1,19 @@
+{
+    "colocados": [
+        {
+            "classificacao": 1,
+            "nome": "ANA",
+            "frequencia": 0
+        },
+        {
+            "classificacao": 2,
+            "nome": "MARIA",
+            "frequencia": 0
+        },
+        {
+            "classificacao": 3,
+            "nome": "JOAO",
+            "frequencia": 0
+        }
+    ]
+}
