@@ -158,3 +158,62 @@ print(dados)
 
 for linha in dados[:1]:
     print(linha)
+    
+
+# Importando arquivo Json
+import json
+
+# Exemplo de dicionário em Python
+dados_pessoa = {
+    "nome": "Maria",
+    "idade": 28,
+    "profissao": "Engenheira",
+    "cidade": "São Paulo",
+    "hobbies": ["ler", "viajar", "cozinhar"]
+}
+
+# Convertendo dicionário para um objeto json
+json.dumps(dados_pessoa)
+
+# Criando um arquivo json
+with open('C:\\Users\\Jasmine\\Documents\\python-course\\data_science_academy\\fundamentos_analise_de_dados\\dado.json', 'w') as file:
+    file.write(json.dumps(dados_pessoa))
+    
+# Leitura de arquivo Json
+with open('C:\\Users\\Jasmine\\Documents\\python-course\\data_science_academy\\fundamentos_analise_de_dados\\dado.json', 'r') as file:
+    text = file.read()
+    data = json.loads(text)
+    
+print(data['nome'])
+
+# Imprimindo um arquivo da web
+from urllib.request import urlopen
+
+response = urlopen("https://jsonplaceholder.typicode.com/users").read().decode('utf8')
+dados = json.loads(response)[0]
+
+print(dados)
+
+print('Nome:', dados['name'])
+print('Email:', dados['email'])
+print('Endereço:', dados['address']['street'])
+
+arquivo_fonte = 'C:\\Users\\Jasmine\\Documents\\python-course\\data_science_academy\\fundamentos_analise_de_dados\\dado.json'
+arquivo_destino = 'C:\\Users\\Jasmine\\Documents\\python-course\\data_science_academy\\fundamentos_analise_de_dados\\dados.txt'
+
+# Método 1
+with open(arquivo_fonte, 'r') as infile:
+    text = infile.read()
+    with open(arquivo_destino, 'w') as outfile:
+     outfile.write(text)
+     
+# Método 2
+open(arquivo_destino, 'w').write(open(arquivo_fonte, 'r').read())
+
+
+# Leitura do arquivo txt
+with open('C:\\Users\\Jasmine\\Documents\\python-course\\data_science_academy\\fundamentos_analise_de_dados\\dados.txt', 'r') as arquivo:
+    texto = arquivo.read()
+    dados = json.loads(texto)    
+    
+print(dados)
