@@ -1,0 +1,116 @@
+import random
+from os import system, name
+
+# Função para limpar a tela a cada execução
+def limpa_tela():
+    if name == 'nt':  # Sistema Windows
+        _ = system('cls')  # Limpar tela no Windows
+    else:  # Mac ou Linux
+        _ = system('clear')  # Limpar tela em outros sistemas
+
+# Função para exibir o boneco da forca, de acordo com o número de chances restantes
+def display_human(chances):
+    stages = [
+        """
+           -----
+           |   |
+           O   |
+          /|\\  |
+          / \\  |
+               |
+        """,
+        """
+           -----
+           |   |
+           O   |
+          /|\\  |
+          /    |
+               |
+        """,
+        """
+           -----
+           |   |
+           O   |
+          /|\\  |
+               |
+               |
+        """,
+        """
+           -----
+           |   |
+           O   |
+          /|   |
+               |
+               |
+        """,
+        """
+           -----
+           |   |
+           O   |
+           |   |
+               |
+               |
+        """,
+        """
+           -----
+           |   |
+           O   |
+               |
+               |
+               |
+        """,
+        """
+           -----
+           |   |
+               |
+               |
+               |
+               |
+        """
+    ]
+    print(stages[chances])  # Exibe o boneco correspondente às chances
+
+# Função principal do jogo
+def game():
+    limpa_tela()  # Limpa a tela no início do jogo
+
+    print("\nBem-vindo ao jogo da forca")
+    print("Adivinhe a palavra abaixo:\n")
+
+    palavras = ['banana', 'abacate', 'uva', 'morango', 'laranja']  # Lista de palavras
+    palavra = random.choice(palavras)  # Escolhe uma palavra aleatória
+
+    letras_descobertas = ['_' for _ in palavra]  # Inicia com tracinhos para cada letra
+    chances = 6  # Número de chances iniciais
+    letras_erradas = []  # Lista de letras erradas
+
+    while chances > 0:
+        display_human(chances)  # Exibe o boneco da forca
+        print(" ".join(letras_descobertas))  # Mostra as letras descobertas
+        print("\nChances restantes:", chances)
+        print("Letras erradas:", " ".join(letras_erradas))
+
+        tentativa = input("\nDigite uma letra: ").lower()  # Entrada do jogador
+
+        if tentativa in palavra:  # Verifica se a letra está na palavra
+            for index, letra in enumerate(palavra):
+                if tentativa == letra:
+                    letras_descobertas[index] = letra
+        else:
+            if tentativa not in letras_erradas:
+                letras_erradas.append(tentativa)
+                chances -= 1
+
+        if "_" not in letras_descobertas:  # Verifica se todas as letras foram descobertas
+            display_human(chances)
+            print("\nVocê venceu, a palavra era:", palavra)
+            break
+
+    if "_" in letras_descobertas:  # Se não restarem chances
+        display_human(0)
+        print("\nVocê perdeu, a palavra era:", palavra)
+
+# Bloco main para iniciar o jogo
+if __name__ == "__main__":
+    game()
+    print("\nFim do jogo!")
